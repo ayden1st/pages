@@ -17,7 +17,7 @@ spec:
         app: pages
     spec:
       containers:
-        - image: ayden1st/pages:1.0
+        - image: ayden1st/pages:pipeline
           name: pages
           ports:
             - containerPort: 8080
