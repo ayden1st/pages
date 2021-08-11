@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: category
+  namespace: brixton
+  labels:
+    app: category
+    servicefor: category
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: category
+    servicefor: category
+  type: NodePort
+status:
+  loadBalancer: {}

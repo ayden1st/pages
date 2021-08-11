@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: pages
+  name: pages
+spec:
+  volumes:
+    - name: config-vol
+      configMap:
+        name: pages-config
+  containers:
+  - image: dellcloud/pages:1.0
+    name: pages
+    imagePullPolicy: IfNotPresent
+    volumeMounts:
+      - name: config-vol
+        mountPath: /etc/config

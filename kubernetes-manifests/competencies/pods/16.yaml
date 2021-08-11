@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: multi-container-pod
+  name: multi-container-pod
+spec:
+  volumes:
+    - name: shared-vol
+      emptyDir: {}
+  containers:
+    - image: ubuntu
+      name: ubuntu
+      imagePullPolicy: IfNotPresent
+      command: ["/bin/sh"]
+      args: ["-c", "while true; do date > /logs/output.txt; free -tw --giga >> /logs/output.txt; sleep 10; done"]
+      volumeMounts:
+        - name: shared-vol
+          mountPath: /logs
+    - image: alpine
+      name: alpine
+      imagePullPolicy: IfNotPresent
+      command: ["/bin/sh"]
+      args: ["-c", "while true; do echo  'Date: ' $(cat /logs/output.txt |  head -1) > /logs/report.txt; echo 'Total Memory:' $(cat /logs/output.txt |  grep Total: | tr -s ' ' | cut -d ' ' -f 2) GB >> /logs/report.txt; echo 'Free Memory:' $(cat /logs/output.txt |  grep Total: | tr -s ' ' | cut -d ' ' -f 3) GB >> /logs/report.txt; sleep 10; done"]
+      volumeMounts:
+        - name: shared-vol
+          mountPath: /logs

@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: pages
+  name: pages
+spec:
+  containers:
+  - image: dellcloud/pages:1.0
+    name: pages
+    imagePullPolicy: IfNotPresent
+    env:
+      - name: PAGE_CONTENT
+        valueFrom:
+          configMapKeyRef:
+            name: pages-config
+            key: PAGE_CONTENT

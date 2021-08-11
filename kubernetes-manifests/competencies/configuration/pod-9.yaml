@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: pages
+  name: pages
+spec:
+  containers:
+  - image: dellcloud/pages:1.0
+    name: pages
+    imagePullPolicy: IfNotPresent
+    env:
+      - name: password
+        valueFrom:
+          secretKeyRef:
+            name: pages-secret
+            key: password

@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: log-pv-evalyoshenkov
+  labels:
+    type: local
+spec:
+  storageClassName: document
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: "/etc/kal-directory"

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: colorful
+  name: nginx-blue
+spec:
+  containers:
+  - image: dellcloud/nginx:blue
+    name: nginx-blue
+    imagePullPolicy: IfNotPresent

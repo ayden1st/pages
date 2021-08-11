@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: nginx
+  name: nginx
+  namespace: vdshapiro-test
+spec:
+  containers:
+  - image: nginx
+    imagePullPolicy: IfNotPresent
+    name: nginx
+    resources:
+      requests:
+        memory: 256Mi
+        cpu: "0.5"
+      limits:
+        memory: 1024Mi
+        cpu: "1"
+  restartPolicy: Always

@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: colorful
+  name: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: colorful
+  template:
+    metadata:
+      labels:
+        app: colorful
+    spec:
+      containers:
+      - image: dellcloud/nginx:blue
+        name: nginx
+        imagePullPolicy: IfNotPresent
